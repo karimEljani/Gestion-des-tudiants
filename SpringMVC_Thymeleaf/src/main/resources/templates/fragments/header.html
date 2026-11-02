@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="navigation">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">Spring MVC · Thymeleaf</a>
+        <div class="nav-links">
+            <a th:href="@{/etudiants}">Étudiants</a>
+            <a th:href="@{/etudiants/ajouter}">Ajouter</a>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

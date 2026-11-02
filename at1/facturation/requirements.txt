@@ -1,0 +1,8 @@
+aiosqlite
+fastapi
+fastmcp
+greenlet
+httpx
+python-dotenv
+sqlmodel
+uvicorn

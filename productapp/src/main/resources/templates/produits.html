@@ -1,0 +1,39 @@
+<!-- src/main/resources/templates/produits.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Liste des Produits</h1>
+    <form th:action="@{/produits/add}" method="post" class="mb-4">
+        <input type="text" name="libelle" placeholder="Libellé" required />
+        <input type="number" step="0.01" name="prix" placeholder="Prix" required />
+        <input type="number" name="qteStock" placeholder="Quantité en Stock" required />
+        <button type="submit" class="btn btn-primary">Ajouter Produit</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Libellé</th>
+                <th>Prix</th>
+                <th>Quantité en Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="produit : ${produits}">
+                <td th:text="${produit.id}"></td>
+                <td th:text="${produit.libelle}"></td>
+                <td th:text="${produit.prix}"></td>
+                <td th:text="${produit.qteStock}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+[project]
+name = "mcpserver"
+version = "0.1.0"
+description = "Serveur MCP de facturation (FastMCP + httpx)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.0",
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+]

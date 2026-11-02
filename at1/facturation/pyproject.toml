@@ -1,0 +1,16 @@
+[project]
+name = "facturation"
+version = "0.1.0"
+description = "Plateforme de facturation intelligente - FastAPI, FastMCP, SQLite"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "aiosqlite",
+    "fastapi",
+    "fastmcp",
+    "greenlet",
+    "httpx",
+    "python-dotenv",
+    "sqlmodel",
+    "uvicorn",
+]

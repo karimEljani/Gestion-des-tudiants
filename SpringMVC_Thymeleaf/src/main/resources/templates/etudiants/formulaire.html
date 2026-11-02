@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titre}">Formulaire étudiant</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+<main class="container narrow">
+    <a class="back-link" th:href="@{/etudiants}">← Retour à la liste</a>
+    <section class="panel form-panel">
+        <p class="eyebrow">FORMULAIRE</p>
+        <h1 th:text="${titre}">Ajouter un étudiant</h1>
+        <form th:action="@{/etudiants/enregistrer}" th:object="${etudiant}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <label for="nom">Nom complet</label>
+            <input id="nom" type="text" th:field="*{nom}" placeholder="Ex. Karim Eljani">
+            <small class="error" th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"></small>
+
+            <label for="email">Adresse email</label>
+            <input id="email" type="email" th:field="*{email}" placeholder="nom@exemple.com">
+            <small class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+
+            <label for="specialite">Spécialité</label>
+            <select id="specialite" th:field="*{specialite}">
+                <option value="">-- Choisir une spécialité --</option>
+                <option value="Développement Web">Développement Web</option>
+                <option value="Réseaux">Réseaux</option>
+                <option value="Multimédia">Multimédia</option>
+                <option value="Systèmes embarqués">Systèmes embarqués</option>
+            </select>
+            <small class="error" th:if="${#fields.hasErrors('specialite')}" th:errors="*{specialite}"></small>
+
+            <div class="form-actions">
+                <a class="button secondary" th:href="@{/etudiants}">Annuler</a>
+                <button class="button primary" type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="expression-box">
+        <h3>Expressions utilisées</h3>
+        <ul>
+            <li><code>th:object="${etudiant}"</code> : associer le formulaire à l'objet.</li>
+            <li><code>th:field="*{nom}"</code> : lier un champ à une propriété.</li>
+            <li><code>th:errors="*{nom}"</code> : afficher les erreurs de validation.</li>
+            <li><code>th:action="@{/etudiants/enregistrer}"</code> : définir l'action du formulaire.</li>
+        </ul>
+    </section>
+</main>
+<footer>Projet pédagogique · Spring Boot + Spring MVC + Thymeleaf</footer>
+</body>
+</html>

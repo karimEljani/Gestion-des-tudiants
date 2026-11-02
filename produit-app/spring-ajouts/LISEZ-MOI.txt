@@ -1,0 +1,13 @@
+Modifications à faire côté Spring (projet du TP1) :
+
+1) Ajouter à src/main/resources/application.properties :
+   spring.jpa.defer-datasource-initialization=true
+
+2) Copier data.sql dans src/main/resources/ (données de test : recherche et filtres).
+
+3) (Variante sans proxy uniquement) ajouter @CrossOrigin(origins = "http://localhost:4200")
+   au-dessus de @RestController dans ProduitRestController.
+
+4) Le projet Spring fourni pour le TP1 est en Spring Boot 2.7 (javax.persistence).
+   Il fonctionne tel quel avec ce client Angular. Si vous passez à Spring Boot 3+,
+   remplacez javax.persistence.* par jakarta.persistence.*.

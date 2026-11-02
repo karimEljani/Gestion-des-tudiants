@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestion des étudiants</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: navigation}"></div>
+
+<main class="container">
+    <section class="page-heading">
+        <div>
+            <p class="eyebrow">APPLICATION SPRING MVC</p>
+            <h1>Gestion des étudiants</h1>
+            <p class="subtitle">Exemple pratique des expressions Thymeleaf.</p>
+        </div>
+        <a class="button primary" th:href="@{/etudiants/ajouter}">+ Ajouter</a>
+    </section>
+
+    <div class="alert success" th:if="${message}" th:text="${message}"></div>
+
+    <section class="stats">
+        <div class="stat-card">
+            <span class="stat-label">Nombre d'étudiants</span>
+            <strong th:text="${nombreEtudiants}">0</strong>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Statut</span>
+            <strong class="status">Application active</strong>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-heading">
+            <h2>Liste des étudiants</h2>
+            <span class="counter" th:text="${#lists.size(etudiants)} + ' résultat(s)'">0 résultat</span>
+        </div>
+
+        <div class="table-wrap" th:if="${not #lists.isEmpty(etudiants)}">
+            <table>
+                <thead>
+                <tr><th>ID</th><th>Nom</th><th>Email</th><th>Spécialité</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                <tr th:each="etudiant : ${etudiants}">
+                    <td th:text="${etudiant.id}">1</td>
+                    <td class="name" th:text="${etudiant.nom}">Nom</td>
+                    <td th:text="${etudiant.email}">email</td>
+                    <td><span class="tag" th:text="${etudiant.specialite}">Spécialité</span></td>
+                    <td class="actions">
+                        <a class="button small secondary"
+                           th:href="@{/etudiants/modifier/{id}(id=${etudiant.id})}">Modifier</a>
+                        <form th:action="@{/etudiants/supprimer/{id}(id=${etudiant.id})}" method="post"
+                              onsubmit="return confirm('Confirmer la suppression ?')">
+                            <button class="button small danger" type="submit">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="empty" th:if="${#lists.isEmpty(etudiants)}">
+            Aucun étudiant trouvé. Ajoutez votre premier étudiant.
+        </div>
+    </section>
+
+    <section class="expression-box">
+        <h3>Expressions Thymeleaf utilisées dans cette page</h3>
+        <ul>
+            <li><code>th:text</code> : afficher une valeur.</li>
+            <li><code>th:each</code> : parcourir la liste des étudiants.</li>
+            <li><code>th:if</code> : afficher un élément selon une condition.</li>
+            <li><code>th:href</code> et <code>@{...}</code> : construire une URL.</li>
+            <li><code>${...}</code> : accéder aux données du modèle.</li>
+            <li><code>th:replace</code> : intégrer un fragment HTML.</li>
+        </ul>
+    </section>
+</main>
+<footer>Projet pédagogique · Spring Boot + Spring MVC + Thymeleaf</footer>
+</body>
+</html>
